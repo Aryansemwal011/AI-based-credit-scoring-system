@@ -89,3 +89,58 @@ print("FIRST 5 ROWS AFTER CLEANING")
 print("=" * 60)
 
 print(df.head())
+
+
+# ==========================================
+# ENCODING CATEGORICAL FEATURES
+# ==========================================
+
+print("\n" + "=" * 60)
+print("ENCODING CATEGORICAL FEATURES")
+print("=" * 60)
+
+# Manual Encoding
+
+df["Gender"] = df["Gender"].map({
+    "Male": 1,
+    "Female": 0
+})
+
+df["Married"] = df["Married"].map({
+    "Yes": 1,
+    "No": 0
+})
+
+df["Education"] = df["Education"].map({
+    "Graduate": 1,
+    "Not Graduate": 0
+})
+
+df["Self_Employed"] = df["Self_Employed"].map({
+    "Yes": 1,
+    "No": 0
+})
+
+df["Loan_Status"] = df["Loan_Status"].map({
+    "Y": 1,
+    "N": 0
+})
+
+df["Property_Area"] = df["Property_Area"].map({
+    "Rural": 0,
+    "Semiurban": 1,
+    "Urban": 2
+})
+
+df["Dependents"] = df["Dependents"].map({
+    "0": 0,
+    "1": 1,
+    "2": 2,
+    "3+": 3
+})
+
+print("\nEncoding Completed Successfully!")
+
+print("\nFirst 5 Rows After Encoding\n")
+
+print(df.head())
