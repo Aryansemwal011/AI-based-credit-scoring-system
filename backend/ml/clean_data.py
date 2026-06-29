@@ -1,5 +1,8 @@
 import os
 import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+import joblib
 
 # ==========================================
 # Load Dataset
@@ -144,3 +147,48 @@ print("\nEncoding Completed Successfully!")
 print("\nFirst 5 Rows After Encoding\n")
 
 print(df.head())
+
+# ==========================================
+# FEATURES AND TARGET
+# ==========================================
+
+print("\n" + "=" * 60)
+print("FEATURES & TARGET")
+print("=" * 60)
+
+X = df.drop("Loan_Status", axis=1)
+y = df["Loan_Status"]
+
+print("Feature Shape :", X.shape)
+print("Target Shape  :", y.shape)
+
+# ==========================================
+# TRAIN TEST SPLIT
+# ==========================================
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+print("\nTrain Shape :", X_train.shape)
+print("Test Shape  :", X_test.shape)
+
+# ==========================================
+# FEATURE SCALING
+# ==========================================
+
+scaler = StandardScaler()
+
+X_train = scaler.fit_transform(X_train)
+
+X_test = scaler.transform(X_test)
+
+print("\nScaling Completed Successfully!")
+
+# Save scaler
+joblib.dump(scaler, "model/scaler.pkl")
+
+print("\nScaler Saved Successfully!")
