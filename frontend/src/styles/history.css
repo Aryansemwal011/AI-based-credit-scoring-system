@@ -1,0 +1,133 @@
+.history-container{
+
+    max-width:1200px;
+
+    margin:40px auto;
+
+    padding:20px;
+
+}
+
+.history-title{
+
+    text-align:center;
+
+    font-size:32px;
+
+    margin-bottom:30px;
+
+    color:#1e3a8a;
+
+}
+
+.search-box{
+
+    width:300px;
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+    margin-bottom:20px;
+
+    font-size:16px;
+
+}
+
+.history-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:white;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.1);
+
+}
+
+.history-table thead{
+
+    background:#1e3a8a;
+
+    color:white;
+
+    position:sticky;
+
+    top:0;
+
+}
+
+.history-table th{
+
+    padding:16px;
+
+}
+
+.history-table td{
+
+    padding:16px;
+
+    text-align:center;
+
+}
+
+.history-table tbody tr:nth-child(even){
+
+    background:#f8fafc;
+
+}
+
+.history-table tbody tr:hover{
+
+    background:#dbeafe;
+
+    transition:.3s;
+
+}
+
+.badge-approved{
+
+    color:green;
+
+    font-weight:bold;
+
+}
+
+.badge-rejected{
+
+    color:red;
+
+    font-weight:bold;
+
+}
+
+.low{
+
+    color:green;
+
+    font-weight:bold;
+
+}
+
+.medium{
+
+    color:orange;
+
+    font-weight:bold;
+
+}
+
+.high{
+
+    color:red;
+
+    font-weight:bold;
+
+}

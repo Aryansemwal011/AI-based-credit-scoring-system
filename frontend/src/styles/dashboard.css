@@ -1,0 +1,19 @@
+.ai-card{
+
+background:white;
+
+border-radius:15px;
+
+padding:25px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.ai-card:hover{
+
+transform:translateY(-5px);
+
+}

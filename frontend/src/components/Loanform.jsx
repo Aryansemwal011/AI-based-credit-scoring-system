@@ -1,34 +1,36 @@
 import { useState } from "react";
 import API from "../services/api";
+import Dashboard from "./Dashboard";
+import "../styles/form.css";
 
 function LoanForm() {
 
-   const [formData, setFormData] = useState({
-    Gender: "",
-    Married: "",
-    Dependents: "",
-    Education: "",
-    Self_Employed: "",
-    ApplicantIncome: "",
-    CoapplicantIncome: "",
-    LoanAmount: "",
-    Loan_Amount_Term: "",
-    Credit_History: "",
-    Property_Area: ""
-});
+    const [formData, setFormData] = useState({
+        Gender: "",
+        Married: "",
+        Dependents: "",
+        Education: "",
+        Self_Employed: "",
+        ApplicantIncome: "",
+        CoapplicantIncome: "",
+        LoanAmount: "",
+        Loan_Amount_Term: "",
+        Credit_History: "",
+        Property_Area: ""
+    });
 
     const [result, setResult] = useState(null);
 
     const handleChange = (e) => {
 
-    const { name, value } = e.target;
+        const { name, value } = e.target;
 
-    setFormData({
-        ...formData,
-        [name]: value === "" ? "" : Number(value)
-    });
+        setFormData({
+            ...formData,
+            [name]: value === "" ? "" : Number(value)
+        });
 
-};
+    };
 
     const handleSubmit = async (e) => {
 
@@ -42,211 +44,236 @@ function LoanForm() {
 
         } catch (error) {
 
-    console.error(error);
+            console.error(error);
 
-    if (error.response) {
-        console.log(error.response.data);
-        alert(JSON.stringify(error.response.data));
-    } else {
-        alert("Cannot connect to backend");
-    }
+            if (error.response) {
 
-}
+                console.log(error.response.data);
+
+                alert(JSON.stringify(error.response.data));
+
+            } else {
+
+                alert("Cannot connect to backend");
+
+            }
+
+        }
+
     };
 
     return (
 
         <div className="container">
 
-            <h1>AI Credit Scoring System</h1>
+            <div className="hero">
+
+                <h1>AI Loan Approval System</h1>
+
+                <p>
+                    Intelligent Multi-Agent Loan Approval Platform
+                </p>
+
+            </div>
 
             <form onSubmit={handleSubmit}>
 
-                <label>Gender</label>
+                <div className="form-grid">
 
-                <select
-                    name="Gender"
-                    value={formData.Gender}
-                    onChange={handleChange}
-                >   <option value="">Select</option>
-                    <option value={1}>Male</option>
-                    <option value={0}>Female</option>
-                </select>
+                    <div className="form-group">
 
-                <label>Married</label>
+                        <label>Gender</label>
 
-                <select
-                    name="Married"
-                    value={formData.Married}
-                    onChange={handleChange}
-                >   <option value="">Select</option>
+                        <select
+                            name="Gender"
+                            value={formData.Gender}
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value="">Select</option>
+                            <option value={1}>Male</option>
+                            <option value={0}>Female</option>
+                        </select>
 
-                    <option value={1}>Yes</option>
-                    <option value={0}>No</option>
-                </select>
+                    </div>
 
-                <label>Dependents</label>
+                    <div className="form-group">
 
-                <input
-                    type="number"
-                    name="Dependents"
-                    value={formData.Dependents}
-                    onChange={handleChange}
-                    placeholder="Enter dependents" 
-                    required
-                />
+                        <label>Married</label>
 
-                <label>Education</label>
+                        <select
+                            name="Married"
+                            value={formData.Married}
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value="">Select</option>
+                            <option value={1}>Yes</option>
+                            <option value={0}>No</option>
+                        </select>
 
-                <select
-                    name="Education"
-                    value={formData.Education}
-                    onChange={handleChange}
-                >   <option value="">Select</option>
+                    </div>
 
-                    <option value={0}>Graduate</option>
-                    <option value={1}>Not Graduate</option>
-                </select>
+                    <div className="form-group">
 
-                <label>Self Employed</label>
+                        <label>Dependents</label>
 
-                <select
-                    name="Self_Employed"
-                    value={formData.Self_Employed}
-                    onChange={handleChange}
-                >   <option value="">Select</option>
-                    <option value={0}>No</option>
-                    <option value={1}>Yes</option>
-                </select>
+                        <input
+                            type="number"
+                            name="Dependents"
+                            value={formData.Dependents}
+                            onChange={handleChange}
+                            placeholder="Enter dependents"
+                            required
+                        />
 
-                <label>Applicant Income</label>
+                    </div>
 
-                <input
-                    type="number"
-                    name="ApplicantIncome"
-                    value={formData.ApplicantIncome}
-                    onChange={handleChange}
-                    placeholder="Enter applicant income"
-                    required
-                />
+                    <div className="form-group">
 
-                <label>Coapplicant Income</label>
+                        <label>Education</label>
 
-                <input
-                    type="number"
-                    name="CoapplicantIncome"
-                    value={formData.CoapplicantIncome}
-                    onChange={handleChange}
-                    placeholder="Enter coapplicant income"
-                    required
-                />
+                        <select
+                            name="Education"
+                            value={formData.Education}
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value="">Select</option>
+                            <option value={0}>Graduate</option>
+                            <option value={1}>Not Graduate</option>
+                        </select>
 
-                <label>Loan Amount</label>
+                    </div>
 
-                <input
-                    type="number"
-                    name="LoanAmount"
-                    value={formData.LoanAmount}
-                    onChange={handleChange}
-                    placeholder="Enter loan amount"
-                    required
-                />
+                    <div className="form-group">
 
-                <label>Loan Term</label>
+                        <label>Self Employed</label>
 
-                <input
-                    type="number"
-                    name="Loan_Amount_Term"
-                    value={formData.Loan_Amount_Term}
-                    onChange={handleChange}
-                    placeholder="Enter number of months"
-                    required
-                />
+                        <select
+                            name="Self_Employed"
+                            value={formData.Self_Employed}
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value="">Select</option>
+                            <option value={0}>No</option>
+                            <option value={1}>Yes</option>
+                        </select>
 
-                <label>Credit History</label>
+                    </div>
 
-                <select
-                    name="Credit_History"
-                    value={formData.Credit_History}
-                    onChange={handleChange}
-                >   <option value="">Select</option>
+                    <div className="form-group">
 
-                    <option value={1}>Good</option>
-                    <option value={0}>Bad</option>
-                </select>
+                        <label>Applicant Income</label>
 
-                <label>Property Area</label>
+                        <input
+                            type="number"
+                            name="ApplicantIncome"
+                            value={formData.ApplicantIncome}
+                            onChange={handleChange}
+                            placeholder="Enter applicant income"
+                            required
+                        />
 
-                <select
-                    name="Property_Area"
-                    value={formData.Property_Area}
-                    onChange={handleChange}
-                >   <option value="">Select</option>
+                    </div>
 
-                    <option value={0}>Rural</option>
-                    <option value={1}>Semiurban</option>
-                    <option value={2}>Urban</option>
-                </select>
+                    <div className="form-group">
 
-                <button type="submit">
-                    Predict
+                        <label>Coapplicant Income</label>
+
+                        <input
+                            type="number"
+                            name="CoapplicantIncome"
+                            value={formData.CoapplicantIncome}
+                            onChange={handleChange}
+                            placeholder="Enter coapplicant income"
+                            required
+                        />
+
+                    </div>
+
+                    <div className="form-group">
+
+                        <label>Loan Amount</label>
+
+                        <input
+                            type="number"
+                            name="LoanAmount"
+                            value={formData.LoanAmount}
+                            onChange={handleChange}
+                            placeholder="Enter loan amount"
+                            required
+                        />
+
+                    </div>
+
+                    <div className="form-group">
+
+                        <label>Loan Amount Term</label>
+
+                        <input
+                            type="number"
+                            name="Loan_Amount_Term"
+                            value={formData.Loan_Amount_Term}
+                            onChange={handleChange}
+                            placeholder="Enter loan term (months)"
+                            required
+                        />
+
+                    </div>
+
+                    <div className="form-group">
+
+                        <label>Credit History</label>
+
+                        <select
+                            name="Credit_History"
+                            value={formData.Credit_History}
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value="">Select</option>
+                            <option value={1}>Good</option>
+                            <option value={0}>Bad</option>
+                        </select>
+
+                    </div>
+
+                    <div className="form-group">
+
+                        <label>Property Area</label>
+
+                        <select
+                            name="Property_Area"
+                            value={formData.Property_Area}
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value="">Select</option>
+                            <option value={0}>Rural</option>
+                            <option value={1}>Semiurban</option>
+                            <option value={2}>Urban</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <button
+                    type="submit"
+                    className="predict-btn"
+                >
+                    Predict Loan
                 </button>
 
             </form>
 
             {result && (
-    <div
-        style={{
-            marginTop: "30px",
-            padding: "20px",
-            border: "1px solid #ccc",
-            borderRadius: "10px"
-        }}
-    >
-        <h2>Prediction Result</h2>
 
-        <p>
-            <strong>Loan Status:</strong> {result.loan_status}
-        </p>
+                <Dashboard result={result} />
 
-        <p>
-            <strong>Approval Probability:</strong>{" "}
-            {result.approval_probability}%
-        </p>
-
-        <p>
-            <strong>Risk Level:</strong> {result.risk_level}
-        </p>
-
-        <p>
-            <strong>Confidence:</strong> {result.confidence}%
-        </p>
-
-        <p>
-            <strong>Interest Rate:</strong>{" "}
-            {result.recommended_interest_rate}%
-        </p>
-
-        <p>
-            <strong>Recommended Loan Limit:</strong> ₹
-            {result.recommended_loan_limit}
-        </p>
-
-        <p>
-            <strong>Fraud Score:</strong> {result.fraud_score}
-        </p>
-
-        <p>
-            <strong>Manual Review:</strong>{" "}
-            {result.manual_review ? "Yes" : "No"}
-        </p>
-
-        <p>
-            <strong>AI Decision:</strong> {result.decision}
-        </p>
-
-    </div>
-)}
+            )}
 
         </div>
 
